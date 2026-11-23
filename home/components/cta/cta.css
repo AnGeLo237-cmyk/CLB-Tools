@@ -1,0 +1,45 @@
+/* Style pour la section Call To Action */
+.cta-section {
+    padding: 80px 5%;
+    background-color: var(--color-primary);
+    text-align: center;
+}
+
+.cta-wrapper {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.cta-wrapper h2 {
+    font-size: 2.2rem;
+    color: var(--color-dark);
+    margin-bottom: 20px;
+}
+
+.cta-wrapper p {
+    font-size: 1.1rem;
+    color: var(--color-dark);
+    margin-bottom: 35px;
+    opacity: 0.9;
+}
+
+.cta-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.cta-buttons .btn-secondary {
+    background: var(--color-dark);
+    color: var(--color-white);
+    border: none;
+}
+
+.cta-buttons .btn-secondary:hover {
+    background: #222;
+    transform: translateY(-2px);
+}
+
+@media (max-width: 600px) {
+    .cta-buttons { flex-direction: column; }
+}

@@ -1,0 +1,84 @@
+/* Style pour la section Contact */
+.contact-section {
+    padding: var(--section-padding);
+    background-color: var(--color-light-gray);
+}
+
+.contact-form-wrapper {
+    max-width: 750px;
+    margin: 40px auto 0;
+    background: var(--color-white);
+    padding: 40px;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    border: 1px solid #eee;
+}
+
+.contact-form .form-row {
+    display: flex;
+    gap: 20px;
+}
+
+.contact-form .form-row .form-group {
+    flex: 1;
+}
+
+.contact-form .form-group {
+    margin-bottom: 25px;
+}
+
+.contact-form label {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 8px;
+    color: var(--color-dark);
+}
+
+.contact-form input, 
+.contact-form textarea {
+    width: 100%;
+    padding: 14px 16px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-family: var(--font-main);
+    font-size: 0.95rem;
+    color: var(--color-gray);
+    background-color: #fafafa;
+    transition: var(--transition);
+}
+
+.contact-form input:focus, 
+.contact-form textarea:focus {
+    border-color: var(--color-primary);
+    background-color: var(--color-white);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.1);
+}
+
+.contact-form textarea {
+    resize: vertical;
+}
+
+.form-submit {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.form-submit .btn {
+    min-width: 200px;
+    cursor: pointer;
+}
+
+@media (max-width: 600px) {
+    .contact-form .form-row {
+        flex-direction: column;
+        gap: 0;
+    }
+    
+    .contact-form-wrapper {
+        padding: 25px;
+    }
+}

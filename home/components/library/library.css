@@ -1,0 +1,128 @@
+/* ==========================================================================
+   CLB-Tools - Mosaic Library Styles
+   ========================================================================== */
+
+.library-preview-section {
+    padding: var(--section-padding);
+    background-color: var(--color-);
+}
+
+/* Boutons de filtrage Premium */
+.library-filters {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 50px;
+}
+
+.filter-btn {
+    padding: 10px 25px;
+    background: transparent;
+    border: 2px solid var(--color-dark);
+    color: var(--color-dark);
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: var(--transition);
+    border-radius: 4px;
+}
+
+.filter-btn.active, .filter-btn:hover {
+    background: var(--color-primary);
+    border-color: var(--color-primary);
+    color: var(--color-dark);
+    box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
+}
+
+/* Cadre Scrolable Stylisé */
+.library-scroll-frame {
+    height: 600px; /* Hauteur fixe pour le scroll */
+    overflow-y: auto;
+    padding: 20px;
+    background: var(--color-dark);
+    border: 4px solid var(--color-dark);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    position: relative;
+}
+
+/* Scrollbar personnalisée "Gold" */
+.library-scroll-frame::-webkit-scrollbar {
+    width: 8px;
+}
+.library-scroll-frame::-webkit-scrollbar-track {
+    background: #1a1a1a;
+}
+.library-scroll-frame::-webkit-scrollbar-thumb {
+    background: var(--color-primary);
+    border-radius: 10px;
+}
+
+/* Grille Mosaïque Dense */
+.asset-mosaic {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    grid-auto-rows: 200px;
+    grid-auto-flow: dense; /* Remplit les trous pour l'effet mosaïque */
+    gap: 15px;
+}
+
+.asset-card {
+    position: relative;
+    border-radius: 4px;
+    overflow: hidden;
+    background: #222;
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    cursor: pointer;
+    border: 1px solid #333;
+}
+
+/* Variations de taille pour l'effet mosaïque */
+.asset-card.large { grid-row: span 2; grid-column: span 2; }
+.asset-card.tall { grid-row: span 2; }
+.asset-card.wide { grid-column: span 2; }
+
+.asset-card:hover {
+    transform: scale(1.03);
+    z-index: 10;
+    border-color: var(--color-primary);
+}
+
+.asset-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(40%);
+    transition: 0.4s;
+}
+
+.asset-card:hover img {
+    filter: grayscale(0%);
+}
+
+/* Overlay d'information */
+.asset-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 15px;
+    background: linear-gradient(transparent, rgba(0,0,0,0.85));
+    color: var(--color-white);
+    opacity: 0;
+    transition: 0.3s;
+}
+
+.asset-card:hover .asset-overlay {
+    opacity: 1;
+}
+
+.asset-overlay span {
+    color: var(--color-primary);
+    font-size: 0.7rem;
+    font-weight: 800;
+    text-transform: uppercase;
+}

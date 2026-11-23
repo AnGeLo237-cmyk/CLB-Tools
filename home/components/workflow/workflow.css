@@ -1,0 +1,61 @@
+/* Workflow Style */
+.workflow-section {
+    padding: var(--section-padding);
+    background-color: var(--color-dark);
+    color: var(--color-white);
+}
+
+.workflow-section .section-title {
+    color: var(--color-primary);
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.workflow-steps {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+}
+
+.step-item {
+    flex: 1;
+    text-align: center;
+}
+
+.step-number {
+    width: 60px;
+    height: 60px;
+    border: 2px solid var(--color-primary);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--color-primary);
+    background-color: rgba(255, 215, 0, 0.05);
+}
+
+.step-content h3 {
+    color: var(--color-white);
+    margin-bottom: 10px;
+    font-size: 1.1rem;
+}
+
+.step-content p {
+    color: #bbb;
+    font-size: 0.9rem;
+}
+
+.step-arrow {
+    font-size: 1.2rem;
+    color: var(--color-primary);
+    opacity: 0.6;
+}
+
+@media (max-width: 850px) {
+    .workflow-steps { flex-direction: column; gap: 30px; }
+    .step-arrow { transform: rotate(90deg); }
+}

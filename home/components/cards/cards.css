@@ -1,0 +1,70 @@
+/* Style pour la section des outils (Cards) */
+.tools-cards-section {
+    padding: var(--section-padding);
+    background-color: var(--color-light-gray);
+}
+
+.cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 50px;
+}
+
+.tool-card {
+    background: var(--color-white);
+    padding: 40px;
+    border: 1px solid #eee;
+    border-radius: var(--radius);
+    transition: var(--transition);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.tool-card:hover {
+    transform: translateY(-10px);
+    box-shadow: var(--shadow);
+    border-color: var(--color-primary);
+}
+
+.card-icon {
+    font-size: 2.5rem;
+    color: var(--color-primary);
+    background: var(--color-dark);
+    width: 70px;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    margin-bottom: 25px;
+}
+
+.card-content h3 {
+    margin-bottom: 15px;
+    font-size: 1.4rem;
+}
+
+.card-content p {
+    color: var(--color-gray);
+    margin-bottom: 25px;
+    font-size: 0.95rem;
+}
+
+.card-link {
+    color: var(--color-dark);
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: var(--transition);
+}
+
+.card-link:hover {
+    color: var(--color-primary);
+    gap: 12px;
+}

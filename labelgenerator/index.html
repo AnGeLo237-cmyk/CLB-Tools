@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+ 
+  <link rel="manifest" href="../manifest.php">
+  <meta name="theme-color" content="#111111">
+  <link rel="apple-touch-icon" href="../../Images/icon-192x192.png">
+  <link rel="icon" href="../../Images/icon-512x512.png" type="image/png">
+
+  <link rel="icon" href="Images/icon-512x512.png" type="image/png">
+  <title>Mini_Projets_BAI — Générateur d'étiquettes</title>
+</head>
+<body>
+    <header>
+        <div class="nav-container">
+          <div class="logo">
+            <img src="../Images/logo.png" alt="Logo">
+            Berth-Ana Inc.
+          </div>
+          <button id="menu-toggle" class="menu-toggle" aria-controls="menu" aria-expanded="false" aria-label="Ouvrir le menu">
+            <span class="hamburger" aria-hidden="true"><span class="bar"></span><span class="bar"></span><span class="bar"></span></span>
+          </button>
+          <div id="nav-overlay" class="nav-overlay" tabindex="-1" aria-hidden="true"></div>
+          <nav id="menu" class="nav" role="navigation" aria-label="Navigation principale">
+            <ul class="nav-list">
+              <li class="nav-item"><a class="nav-link" href="../index.html">Accueil</a></li>
+              <li class="nav-item"><a href="../zimager/index.html" class="nav-link">Zimager</a></li>
+              <li class="nav-item"><a class="nav-link" href="../codegenerator/index.html">CodeGenerator</a></li>
+            </ul>
+          </nav>
+        </div>
+    </header>
+
+  <main>
+    <h1 id="title">Générateur d’étiquettes — PNG / SVG</h1>
+    <div id="box" class="app-grid">
+      <section class="panel form-panel" aria-labelledby="formTitle">
+        <h2 id="formTitle" class="panel-title">Paramètres étiquette</h2>
+        <form id="labelForm" novalidate>
+          <div class="field">
+            <label for="productName">Nom du produit</label>
+            <input id="productName" name="productName" type="text" placeholder="Ex : Savon artisanal" />
+          </div>
+          <div class="field">
+            <label for="sku">SKU / Code</label>
+            <input id="sku" name="sku" type="text" placeholder="Ex : 123456789012" />
+          </div>
+          <div class="field two-cols">
+            <div>
+              <label for="price">Prix (optionnel)</label>
+              <input id="price" name="price" type="number" inputmode="decimal" min="0" step="0.01" placeholder="Ex : 4.99" />
+            </div>
+            <div>
+              <label>Image insérée</label>
+              <div class="inline-radio">
+                <label><input type="radio" name="imageType" value="barcode" checked> Code-barres</label>
+                <label><input type="radio" name="imageType" value="qr"> QR code</label>
+              </div>
+            </div>
+          </div>
+
+          <div id="barcodeInput" class="field">
+            <label for="barcodeFile">Image code-barres (PNG / JPG / SVG)</label>
+            <div style="display:flex;gap:8px;align-items:center;">
+              <input id="barcodeFile" name="barcodeFile" type="file" accept="image/*" />
+              <button id="openBarcodeLibraryBtn" type="button" class="btn">Importer depuis la bibliothèque</button>
+            </div>
+            <div id="barcodePreviewThumb" class="thumb hint-small" aria-hidden="true"></div>
+            <input type="hidden" id="barcodeLibraryId" value="">
+          </div>
+
+          <div id="qrInput" class="field" style="display:none;">
+            <label for="qrFile">Image QR (PNG / JPG)</label>
+            <div style="display:flex;gap:8px;align-items:center;">
+              <input id="qrFile" name="qrFile" type="file" accept="image/*" />
+              <button id="openQrLibraryBtn" type="button" class="btn">Importer depuis la bibliothèque</button>
+            </div>
+            <div id="qrPreviewThumb" class="thumb hint-small" aria-hidden="true"></div>
+            <input type="hidden" id="qrLibraryId" value="">
+          </div>
+
+          <div class="field two-cols">
+            <div>
+              <label for="widthMm">Largeur (mm) — min 60</label>
+              <input id="widthMm" name="widthMm" type="number" min="60" step="1" value="60" />
+            </div>
+            <div>
+              <label for="heightMm">Hauteur (mm) — min 30</label>
+              <input id="heightMm" name="heightMm" type="number" min="30" step="1" value="30" />
+            </div>
+          </div>
+
+          <div class="field">
+            <label>Format de sortie</label>
+            <div class="inline-radio">
+              <label><input type="radio" name="outputFormat" value="png" checked> PNG</label>
+              <label><input type="radio" name="outputFormat" value="svg"> SVG</label>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="dpi">Résolution (PPP / DPI)</label>
+            <input id="dpi" name="dpi" type="number" min="72" max="1200" step="1" value="300" />
+            <p class="hint-small">Valeur conseillée : 300 DPI pour impression. Affecte l’export PNG.</p>
+          </div>
+
+          <div id="errorMsg" class="error" role="alert" aria-live="polite"></div>
+
+          <div class="actions">
+            <button id="previewBtn" type="button" class="btn primary"><i class="fas fa-eye"></i> Prévisualiser</button>
+            <button id="downloadBtn" type="button" class="btn"><i class="fas fa-download"></i> Télécharger</button>
+            <button id="printBtn" type="button" class="btn muted"><i class="fas fa-print"></i> Imprimer</button>
+            <button id="saveLibraryBtn" type="button" class="btn"><i class="fas fa-save"></i> Enregistrer dans la bibliothèque</button>
+          </div>
+        </form>
+      </section>
+
+      <section class="panel preview-panel" aria-label="Aperçu de l'étiquette">
+        <h2 class="panel-title">Aperçu (dimensions personnalisées)</h2>
+        <div id="previewWrapper" class="preview-wrapper">
+          <div id="labelPreview" class="label" role="region" aria-live="polite">
+            <div class="empty">Clique sur « Prévisualiser » pour voir l’étiquette</div>
+          </div>
+        </div>
+        <p class="hint">Les dimensions définies seront utilisées pour l’export. La taille minimale est 60×30 mm.</p>
+      </section>
+    </div>
+  </main>
+
+  <footer>
+    <small>Prototype — dimensions personnalisées, export PNG / SVG. Vous pouvez importer des images depuis la bibliothèque ou y enregistrer vos étiquettes.</small>
+  </footer>
+
+  <div id="libraryModal" class="lib-modal" aria-hidden="true" style="display:none;">
+    <div class="lib-modal-card" role="dialog" aria-modal="true" aria-label="Bibliothèque d'assets">
+      <div class="lib-modal-header">
+        <h3>Bibliothèque d'assets</h3>
+        <div>
+          <button id="libRefresh" class="btn">Rafraîchir</button>
+          <button id="libClose" class="btn muted">Fermer</button>
+        </div>
+      </div>
+      <div id="libGrid" class="lib-grid" tabindex="0" aria-live="polite"></div>
+    </div>
+  </div>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <button id="installBtn" style="position:fixed;bottom:20px;right:20px;padding:12px 24px;background:#111;color:#fff;border:none;border-radius:50px;font-weight:bold;box-shadow:0 4px 12px rgba(0,0,0,0.3);display:none;z-index:9999;cursor:pointer;">
+    📲 Installer l’application
+  </button>
+
+  <script>
+    // Enregistre le service worker (mode hors-ligne) et choisit automatiquement le bon chemin selon le sous-dossier courant.
+    const currentPath = window.location.pathname;
+    const swPath = currentPath.includes('/codegenerator/') || 
+                  currentPath.includes('/labelgenerator/') || 
+                  currentPath.includes('/zimager/') 
+                  ? '../sw.js' 
+                  : 'sw.js';
+
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register(swPath)
+        .then(reg => console.log('✅ Service Worker enregistré (dynamique)'))
+        .catch(err => console.error('❌ Erreur SW:', err));
+    }
+
+    // Affiche le bouton "Installer l’application" uniquement lorsque le navigateur déclenche l'événement PWA `beforeinstallprompt`.
+    let deferredPrompt;
+    const installBtn = document.getElementById('installBtn');
+    window.addEventListener('beforeinstallprompt', e => {
+      console.log('🔥 beforeinstallprompt déclenché !');
+      e.preventDefault();
+      deferredPrompt = e;
+      installBtn.style.display = 'block';
+    });
+    installBtn.addEventListener('click', () => {
+      if (deferredPrompt) {
+        deferredPrompt.prompt();
+        deferredPrompt.userChoice.then(() => { installBtn.style.display = 'none'; });
+        deferredPrompt = null;
+      }
+    });
+  </script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <script src="script.js" defer></script>
+</body>
+</html>

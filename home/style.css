@@ -1,0 +1,275 @@
+/* ==========================================================================
+   CLB-Tools - Home Page Stylesheet
+   Fichier : home/style.php
+   ========================================================================== */
+
+/* 1. VARIABLES & RESET */
+:root {
+    /* Thème couleur */ 
+    --color-primary: #FFD700;    /* Or */
+    --color-dark: #000000;       /* Noir */
+    --color-gray: #333333;       /* Gris foncé */
+    --color-light-gray: #f4f4f4; /* Gris très clair pour nuances */
+    --color-white: #ffffff;      /* Blanc */
+    
+    --font-main: 'Inter', system-ui, -apple-system, sans-serif;
+    --transition: all 0.3s ease;
+    --shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    --radius: 8px;
+    --section-padding: 100px 5%;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-main);
+    line-height: 1.6;
+    color: var(--color-gray);
+    background-color: var(--color-white);
+    overflow-x: hidden;
+}
+
+h1, h2, h3, h4 {
+    color: var(--color-dark);
+    font-weight: 800;
+    text-transform: uppercase;
+}
+
+/* 2. ÉLÉMENTS RÉUTILISABLES (BOUTONS & TITRES) */
+.btn {
+    display: inline-block;
+    padding: 14px 32px;
+    border-radius: 4px;
+    font-weight: 700;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+    transition: var(--transition);
+    cursor: pointer;
+    border: 2px solid transparent;
+}
+
+.btn-primary {
+    background: var(--color-primary);
+    color: var(--color-dark);
+}
+
+.btn-primary:hover {
+    background: var(--color-dark);
+    color: var(--color-primary);
+    transform: translateY(-2px);
+}
+
+.btn-outline {
+    background: transparent;
+    border-color: var(--color-dark);
+    color: var(--color-dark);
+}
+
+.btn-outline:hover {
+    background: var(--color-dark);
+    color: var(--color-white);
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.section-header h2 {
+    font-size: 2.5rem;
+    position: relative;
+    display: inline-block;
+    padding-bottom: 15px;
+}
+
+.section-header h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 4px;
+    background: var(--color-primary);
+}
+
+/* 3. STRUCTURE DES COMPOSANTS (INDEX.PHP) */
+
+/* Hero Section */
+.hero-section {
+    min-height: 90vh;
+    display: flex;
+    align-items: center;
+    padding: 120px 5% 60px;
+    background: linear-gradient(135deg, #ffffff 60%, #f9f9f9 100%);
+}
+
+.hero-content h1 {
+    font-size: 4rem;
+    margin-bottom: 20px;
+}
+
+.hero-content h1 span {
+    color: var(--color-primary);
+}
+
+/* Features Grid (3 modules) */
+.features-section {
+    padding: var(--section-padding);
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.feature-card {
+    padding: 40px;
+    border: 1px solid #eee;
+    background: var(--color-white);
+    transition: var(--transition);
+}
+
+.feature-card:hover {
+    border-color: var(--color-primary);
+    box-shadow: var(--shadow);
+}
+
+/* Workflow (Fond sombre) */
+.workflow-section {
+    padding: var(--section-padding);
+    background: var(--color-dark);
+    color: var(--color-white);
+}
+
+.workflow-section .section-header h2 { color: var(--color-primary); }
+
+.workflow-steps {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.wf-step-circle {
+    width: 80px;
+    height: 80px;
+    border: 2px solid var(--color-primary);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+    font-size: 1.5rem;
+    color: var(--color-primary);
+}
+
+/* Cards / Detailed Info */
+.cards-section {
+    padding: var(--section-padding);
+    background: #fafafa;
+}
+
+/* Library Preview */
+.library-section {
+    padding: var(--section-padding);
+}
+
+.lib-grid-preview {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+}
+
+.lib-item-mock {
+    aspect-ratio: 1;
+    background: var(--color-light-gray);
+    border: 1px solid #ddd;
+    border-radius: var(--radius);
+}
+
+/* Demo Section */
+.demo-section {
+    padding: var(--section-padding);
+    background: var(--color-dark);
+    text-align: center;
+}
+
+.demo-container {
+    max-width: 900px;
+    margin: 0 auto;
+    background: #222;
+    padding: 20px;
+    border: 2px solid var(--color-primary);
+    border-radius: var(--radius);
+}
+
+/* CTA Section */
+.cta-section {
+    padding: 80px 5%;
+    background: var(--color-primary);
+    text-align: center;
+    color: var(--color-dark);
+}
+
+.cta-section h2 { margin-bottom: 25px; }
+
+/* Contact Section */
+.contact-section {
+    padding: var(--section-padding);
+}
+
+.contact-form {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group input, .form-group textarea {
+    width: 100%;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-family: inherit;
+}
+
+.form-group input:focus {
+    border-color: var(--color-primary);
+    outline: none;
+}
+
+/* Footer */
+.main-footer {
+    padding: 60px 5% 20px;
+    background: var(--color-dark);
+    color: #888;
+}
+
+.footer-bottom {
+    border-top: 1px solid #222;
+    margin-top: 40px;
+    padding-top: 20px;
+    text-align: center;
+    font-size: 0.8rem;
+}
+
+/* 4. RESPONSIVE */
+@media (max-width: 992px) {
+    .hero-content h1 { font-size: 2.8rem; }
+    .workflow-steps { flex-direction: column; align-items: center; gap: 50px; }
+    .lib-grid-preview { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 768px) {
+    :root { --section-padding: 60px 5%; }
+    .hero-section { text-align: center; padding-top: 100px; }
+}

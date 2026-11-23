@@ -1,0 +1,127 @@
+/* CLB-Tools/home/components/prices/prices.css */
+
+.prices-section {
+    padding: var(--section-padding);
+    background-color: var(--color-light-gray); /* Contraste avec le blanc[cite: 41] */
+}
+
+/* Toggle Billing Style */
+.billing-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    margin-top: -20px;
+    font-weight: 700;
+    color: var(--color-dark);
+}
+
+.save-badge {
+    background: var(--color-primary);
+    padding: 2px 8px;
+    border-radius: 20px;
+    font-size: 0.7rem;
+    margin-left: 5px;
+}
+
+/* Grid Layout for 5 Cards */
+.prices-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 15px;
+    margin-top: 60px;
+}
+
+.price-card {
+    background: var(--color-white);
+    padding: 35px 20px;
+    border-radius: var(--radius);
+    border: 1px solid #eee;
+    transition: var(--transition);
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    position: relative;
+}
+
+.price-card:hover {
+    transform: translateY(-10px);
+    box-shadow: var(--shadow);
+    border-color: var(--color-primary);
+}
+
+/* Featured & Custom Highlights */
+.price-card.featured {
+    border: 2px solid var(--color-primary);
+    transform: scale(1.05);
+    background: var(--color-dark);
+    color: var(--color-white);
+    z-index: 2;
+}
+
+.popular-tag {
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--color-primary);
+    color: var(--color-dark);
+    font-size: 0.65rem;
+    font-weight: 800;
+    padding: 4px 12px;
+    border-radius: 20px;
+    text-transform: uppercase;
+}
+
+.price-card.featured h3, .price-card.featured .price-value { color: var(--color-primary); }
+
+.price-value {
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: var(--color-dark);
+    margin-bottom: 20px;
+}
+
+.price-value span { font-size: 0.9rem; color: #999; }
+
+.price-card.featured .price-subtitle { color: #888; }
+
+.price-card.custom-plan {
+    background: linear-gradient(135deg, #fdfdfd 0%, var(--color-primary) 200%);
+}
+
+/* Features List */
+.price-features {
+    list-style: none;
+    margin: 30px 0;
+    text-align: left;
+}
+
+.price-features li {
+    font-size: 0.85rem;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.price-features li.disabled {
+    opacity: 0.4;
+    text-decoration: line-through;
+}
+
+.price-features li i { color: var(--color-primary); }
+
+.featured .price-footer a:hover {
+    border-color: var(--color-primary);
+}
+
+/* Responsive Grid */
+@media (max-width: 1200px) {
+    .prices-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+@media (max-width: 768px) {
+    .prices-grid { grid-template-columns: 1fr; max-width: 400px; margin: 40px auto; }
+    .price-card.featured { transform: none; }
+}
